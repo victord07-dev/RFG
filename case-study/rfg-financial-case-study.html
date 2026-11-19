@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RFG Financial Loan Operations Platform - Case Study</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    * { box-sizing: border-box; }
+    :root {
+      --ink: #071d2f;
+      --muted: #5c6d71;
+      --line: #d7e1df;
+      --paper: #f2f7f5;
+      --soft: #eaf5ef;
+      --navy: #002a33;
+      --green: #00865a;
+      --green-2: #62e3ae;
+      --blue-soft: #eaf2ff;
+      --amber: #d98700;
+      --red: #b62525;
+    }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #dfe8f6;
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 18mm;
+      background: linear-gradient(135deg, #fbfdfc 0%, #f4f8f7 58%, #e8f4f0 100%);
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+    .page:last-child { page-break-after: auto; }
+    .cover {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 37% 63%;
+      background: #f7fbfa;
+    }
+    .cover-side {
+      padding: 18mm 12mm;
+      background: radial-gradient(circle at 72% 70%, rgba(0, 134, 90, .28), transparent 34%),
+        linear-gradient(160deg, #002a33 0%, #063f48 52%, #00865a 120%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cover-main {
+      padding: 18mm 18mm 16mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 12px;
+      padding: 6px;
+      border: 1px solid rgba(255,255,255,.28);
+    }
+    .logo-large {
+      width: 132px;
+      height: 132px;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 45px rgba(7,29,47,.12);
+    }
+    .eyebrow {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      font-size: 46px;
+      line-height: 1.03;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-size: 30px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+    p, li {
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .lead {
+      font-size: 16px;
+      color: #344c52;
+      max-width: 560px;
+    }
+    .cover-shot {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 50px rgba(7,29,47,.13);
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #e5f5ed;
+      color: #006f4b;
+      border: 1px solid #bfe8d3;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .side-note {
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      padding: 16px;
+      background: rgba(255,255,255,.08);
+    }
+    .side-note p { color: rgba(255,255,255,.78); }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card {
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 14px 30px rgba(7,29,47,.06);
+    }
+    .card.dark {
+      background: var(--navy);
+      border-color: #0b4650;
+      color: #fff;
+      box-shadow: 0 18px 34px rgba(0,42,51,.2);
+    }
+    .card.dark p, .card.dark li { color: rgba(255,255,255,.76); }
+    .card.soft { background: #edf8f2; }
+    .feature {
+      min-height: 112px;
+      border-top: 4px solid var(--green);
+    }
+    .number {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+    }
+    .page-num {
+      color: #8b9a9e;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .list-clean {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list-clean li { margin: 7px 0; }
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      background: rgba(255,255,255,.75);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 13px;
+    }
+    .step strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 13px;
+    }
+    .shot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .shot {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 8px;
+      box-shadow: 0 14px 26px rgba(7,29,47,.08);
+    }
+    .shot img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+    .shot-caption {
+      font-size: 10.5px;
+      color: var(--muted);
+      font-weight: 700;
+      margin: 8px 4px 2px;
+    }
+    .architecture {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .node {
+      min-height: 92px;
+      border-radius: 14px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 13px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 12px 22px rgba(7,29,47,.06);
+    }
+    .node strong { font-size: 13px; }
+    .node span { color: var(--muted); font-size: 10.5px; margin-top: 4px; }
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .kpi div {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 12px;
+    }
+    .kpi b {
+      display: block;
+      font-size: 20px;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+    .footer {
+      position: absolute;
+      left: 18mm;
+      right: 18mm;
+      bottom: 12mm;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+      color: #8b9a9e;
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .wide-shot {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 38px rgba(7,29,47,.1);
+      margin-top: 14px;
+    }
+    .small-note {
+      color: #6e7b80;
+      font-size: 11px;
+      padding: 10px 12px;
+      background: #fff7e8;
+      border: 1px solid #f2d39a;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <section class="page cover">
+    <aside class="cover-side">
+      <div>
+        <div class="brand">
+          <img src="../public/rfg-logo.png" alt="RFG Financial logo">
+          <div>
+            <div>RFG Financial</div>
+            <p style="margin:2px 0 0;color:rgba(255,255,255,.7);font-size:11px;">Loan Operations Platform</p>
+          </div>
+        </div>
+      </div>
+      <div class="side-note">
+        <p class="eyebrow" style="color:#62e3ae;">Case Study Report</p>
+        <h3 style="font-size:24px;">Admin and Sales Workflow System</h3>
+        <p>Prepared from the supplied project scope, implementation notes, screenshots, and verified workflow details.</p>
+      </div>
+      <div>
+        <p style="color:rgba(255,255,255,.72);font-size:11px;">Prepared by BoroTech Solution for Reliant Future Group LLP project documentation.</p>
+      </div>
+    </aside>
+    <main class="cover-main">
+      <div>
+        <img class="logo-large" src="../public/rfg-logo.png" alt="RFG Financial logo">
+        <div style="margin-top:22px;">
+          <div class="eyebrow">Professional Project Report</div>
+          <h1>RFG Financial Loan Operations Platform</h1>
+          <p class="lead">A web-based admin and sales panel designed to support application recording, loan status control, EMI follow-up, payment verification, staff access, reports, and activity logs.</p>
+          <div class="chips">
+            <span class="chip">Admin Panel</span>
+            <span class="chip">Sales Panel</span>
+            <span class="chip">Supabase Backend</span>
+            <span class="chip">Manual Bank Verification</span>
+            <span class="chip">Google Drive Log Archive</span>
+            <span class="chip">Responsive UI</span>
+          </div>
+        </div>
+      </div>
+      <img class="cover-shot" src="../admin-dashboard-transactions-two-line.png" alt="Admin dashboard preview">
+    </main>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Project Overview</div>
+        <h2>Purpose and Context</h2>
+        <p class="lead">The project is an MVP finance workflow platform for Reliant Future Group LLP, consisting of a customer Android app scope and a web admin/sales panel. This report focuses on the web admin and sales panel work covered in the provided project details.</p>
+      </div>
+      <span class="page-num">01</span>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Project Purpose</h3>
+        <p>The software is intended to support the client&apos;s existing physical business workflow. It is not intended to replace manual discussion, physical paperwork, legal documentation, banking processes, finance compliance, tax compliance, collection practices, or regulatory responsibilities.</p>
+      </div>
+      <div class="card soft">
+        <h3>Scope Focus</h3>
+        <p>The web platform supports loan application recording, customer records, loan status management, EMI status management, payment history, payment reminders, payment settings, activity logs, and restricted sales team access.</p>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:18px;">
+      <div class="card feature">
+        <h3>Admin Control</h3>
+        <p>Admins can view records, approve or reject applications, mark loans active or closed, edit special terms, approve or reject payment requests, and view reports and logs.</p>
+      </div>
+      <div class="card feature">
+        <h3>Sales Workflow</h3>
+        <p>Sales users can create applications, enter loan values, add customer, guarantor and showroom details, complete checklist steps, and submit cash payment requests.</p>
+      </div>
+      <div class="card feature">
+        <h3>No File Upload Storage</h3>
+        <p>The MVP avoids storing Aadhaar, PAN, RC, insurance, pollution, seller ID, customer ID proof, or other sensitive document images/files unless separately agreed later.</p>
+      </div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Project Overview</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Problem Statement and Goals</div>
+        <h2>What the System Needed to Solve</h2>
+        <p class="lead">The client needed a practical starting-stage system for staff-led finance operations, while keeping workflows understandable for users who may not be comfortable with complex software.</p>
+      </div>
+      <span class="page-num">02</span>
+    </div>
+    <div class="grid-2">
+      <div class="card dark">
+        <h3>Problem Statement</h3>
+        <ul class="list-clean">
+          <li>Loan application and customer information needed to be captured in one structured system.</li>
+          <li>Admin review, approval, activation, payment verification, and closure needed clear status control.</li>
+          <li>Cash and normal bank QR payments required manual admin verification because no bank API is used in the MVP.</li>
+          <li>Sales team access needed to be restricted from admin-only controls and from other sales users&apos; records.</li>
+          <li>The design needed to stay simple and readable for branch and field users.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Project Goals</h3>
+        <ul class="list-clean">
+          <li>Build a web admin panel and restricted sales panel.</li>
+          <li>Use Supabase PostgreSQL for records, roles, policies, and protected workflows.</li>
+          <li>Keep payment verification clear for Razorpay, normal bank QR/manual verification, and cash requests.</li>
+          <li>Use Firebase later for Android EMI reminders.</li>
+          <li>Retain current and previous month logs in Supabase and archive older logs privately to Google Drive.</li>
+          <li>Limit account access to one active admin and two active sales members.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="margin-top:18px;">
+      <h3>Design Direction</h3>
+      <p>The UI direction uses a light business dashboard style with RFG colors: navy, green, white, soft gray, amber for pending states, and red for rejection or failure states. The interface avoids technical labels and uses practical action language such as Create Application, Approve, Reject, Mark Active, Confirm Payment, and Cash Request.</p>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Problem and Goals</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Process and Workflow</div>
+        <h2>How the Loan Workflow Operates</h2>
+        <p class="lead">The workflow is built around a controlled handoff from sales entry to admin review, then activation after actual disbursement, followed by EMI and payment verification activity.</p>
+      </div>
+      <span class="page-num">03</span>
+    </div>
+    <div class="timeline">
+      <div class="step"><span class="number">1</span><div><strong>Sales creates application</strong><p>Sales records customer details, guarantor details, showroom information, product details, loan values, physical checklist status, and review information.</p></div></div>
+      <div class="step"><span class="number">2</span><div><strong>Admin reviews application</strong><p>Admin approves or rejects the application. If approved, the process continues through discussion, paperwork, and checking.</p></div></div>
+      <div class="step"><span class="number">3</span><div><strong>Loan becomes active after disbursement</strong><p>Admin marks the approved loan active when the customer actually receives funds or the loan cycle should start. The EMI schedule is generated at that point.</p></div></div>
+      <div class="step"><span class="number">4</span><div><strong>Sales submits collection request</strong><p>Sales selects a pending EMI and submits a cash request. Manual bank QR payments also wait for admin verification.</p></div></div>
+      <div class="step"><span class="number">5</span><div><strong>Admin confirms or rejects payment</strong><p>Confirmed payments create a payment record and mark the EMI paid. Rejected requests return the EMI to pending.</p></div></div>
+    </div>
+    <div class="small-note" style="margin-top:16px;">Client update included in this report: the application flow now treats the parties as customer, guarantor, showroom, and RFG. Guarantor OTP is planned for configuration later and is not mandatory in the current frontend testing flow.</div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Process</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Key Features</div>
+        <h2>Sales Panel</h2>
+        <p class="lead">The sales panel is focused on daily application creation, pending customer follow-up, and cash collection request submission.</p>
+      </div>
+      <span class="page-num">04</span>
+    </div>
+    <div class="grid-3">
+      <div class="card feature"><h3>Guided Application Form</h3><p>Step-based entry for customer, guarantor, product, showroom, loan values, checklist, and final review.</p></div>
+      <div class="card feature"><h3>Loan Value Calculation</h3><p>Processing fee was added. EMI amount is calculated as loan amount plus charge amount plus processing fee, divided by tenure in months.</p></div>
+      <div class="card feature"><h3>Restricted Access</h3><p>Sales users have simplified navigation and should only see permitted workflows and assigned/allowed records.</p></div>
+    </div>
+    <div class="shot-grid">
+      <div class="shot"><img src="../sales-dashboard.png" alt="Sales dashboard"><div class="shot-caption">Sales dashboard</div></div>
+      <div class="shot"><img src="../sales-mobile.png" alt="Sales mobile view"><div class="shot-caption">Responsive mobile sales view</div></div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Sales Panel</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Key Features</div>
+        <h2>Admin Operations Panel</h2>
+        <p class="lead">The admin panel centralizes review, activation, payment verification, reports, staff users, settings, and audit visibility.</p>
+      </div>
+      <span class="page-num">05</span>
+    </div>
+    <div class="shot-grid">
+      <div class="shot"><img src="../admin-dashboard-transactions-two-line.png" alt="Admin dashboard"><div class="shot-caption">Admin dashboard overview</div></div>
+      <div class="shot"><img src="../applications-review-redesign.png" alt="Applications review"><div class="shot-caption">Applications review and loan actions</div></div>
+      <div class="shot"><img src="../admin-customers-redesign.png" alt="Customer records"><div class="shot-caption">Customer records</div></div>
+      <div class="shot"><img src="../admin-bank-redesign.png" alt="Bank verification"><div class="shot-caption">Manual bank and cash verification</div></div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Admin Panel</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Backend and System Design</div>
+        <h2>Implementation Structure</h2>
+        <p class="lead">The backend setup uses Supabase PostgreSQL with protected workflows, role-based access, and database-level limits for active staff accounts.</p>
+      </div>
+      <span class="page-num">06</span>
+    </div>
+    <div class="architecture">
+      <div class="node"><strong>React Web App</strong><span>Admin and sales UI</span></div>
+      <div class="node"><strong>Supabase Auth</strong><span>Admin and sales login</span></div>
+      <div class="node"><strong>PostgreSQL</strong><span>Loans, EMI, payments, logs</span></div>
+      <div class="node"><strong>Protected RPC</strong><span>Atomic workflow actions</span></div>
+      <div class="node"><strong>Google Drive</strong><span>Private log archives</span></div>
+    </div>
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card">
+        <h3>Data Areas</h3>
+        <ul class="list-clean">
+          <li>Profiles and roles</li>
+          <li>Customers, guarantor/showroom application details, loan applications and terms</li>
+          <li>Document checklist status without file upload storage</li>
+          <li>EMI schedule, payments, and payment requests</li>
+          <li>Payment settings, activity logs, login logs, and archive records</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>Access Controls</h3>
+        <ul class="list-clean">
+          <li>Only one active admin account.</li>
+          <li>Only two active sales member accounts.</li>
+          <li>Sales users cannot change admin access or payment receiver settings.</li>
+          <li>Payment receiver settings are admin controlled.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Backend Structure</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Payment, Reports and Logs</div>
+        <h2>Operational Visibility</h2>
+        <p class="lead">The platform separates payment records from admin verification, so the team can see what was paid, what needs checking, and what is pending or rejected.</p>
+      </div>
+      <span class="page-num">07</span>
+    </div>
+    <div class="shot-grid">
+      <div class="shot"><img src="../admin-payments-redesign.png" alt="Payments page"><div class="shot-caption">Payment ledger</div></div>
+      <div class="shot"><img src="../admin-reports-with-graph.png" alt="Reports page"><div class="shot-caption">Total finance reports</div></div>
+      <div class="shot"><img src="../admin-activity-redesign.png" alt="Activity logs"><div class="shot-caption">Activity logs and archive visibility</div></div>
+      <div class="shot"><img src="../admin-settings-redesign.png" alt="Settings page"><div class="shot-caption">Payment and integration settings</div></div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Visibility</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Solutions Implemented</div>
+        <h2>What Was Delivered</h2>
+        <p class="lead">The implementation converted the supplied MVP requirements into an operational web workflow with clear screens, protected backend actions, and a cost-conscious archive plan.</p>
+      </div>
+      <span class="page-num">08</span>
+    </div>
+    <div class="grid-3">
+      <div class="card"><h3>Application Control</h3><p>Admin review, approve, reject, active, closed, special term edits, and MPIN reset workflows were represented in the admin panel.</p></div>
+      <div class="card"><h3>Payment Verification</h3><p>Cash and manual bank QR payments wait for admin approval. Confirmed payments become paid records; rejected requests return to pending.</p></div>
+      <div class="card"><h3>Disbursement-Based EMI</h3><p>The EMI cycle starts when admin marks the approved loan active after actual disbursement, reducing disputes about starting dates.</p></div>
+      <div class="card"><h3>Guarantor Flow</h3><p>The sales application flow now includes guarantor name, number, address, pincode, and a planned guarantor OTP UI.</p></div>
+      <div class="card"><h3>Free Storage Strategy</h3><p>Older logs are archived to the client-owned private Google Drive folder instead of filling Supabase storage.</p></div>
+      <div class="card"><h3>Responsive UI</h3><p>Admin and sales views were refined for desktop, tablet, and mobile usage with simple language and visible workflows.</p></div>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Solutions</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Results and Current Status</div>
+        <h2>Verified Outcomes</h2>
+        <p class="lead">The following outcomes are based only on the provided project conversation, setup notes, screenshots, and user-confirmed tests.</p>
+      </div>
+      <span class="page-num">09</span>
+    </div>
+    <div class="grid-2">
+      <div class="card soft">
+        <h3>Workflow Confirmed</h3>
+        <ul class="list-clean">
+          <li>Create application.</li>
+          <li>Approve application.</li>
+          <li>Mark approved loan active.</li>
+          <li>Generate EMI schedule.</li>
+          <li>Submit EMI cash request.</li>
+          <li>Confirm payment.</li>
+          <li>Reset MPIN.</li>
+          <li>Confirm sales users cannot see another salesperson&apos;s applications.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Configuration Completed or Prepared</h3>
+        <ul class="list-clean">
+          <li>Supabase backend setup scripts and protected workflows prepared.</li>
+          <li>Admin and sales role limits enforced by database design.</li>
+          <li>Google Drive archive script configured with monthly trigger.</li>
+          <li>Firebase, OTP/SMS, Razorpay, and Hostinger production deployment remain configuration/deployment items.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card dark" style="margin-top:18px;">
+      <h3>Conclusion</h3>
+      <p>The RFG Financial Loan Operations Platform establishes a structured admin and sales workflow for loan application handling, EMI follow-up, payment verification, staff access control, reporting, and activity logging. The current build gives the client a practical operational base while keeping paid third-party services and production deployment clearly separated for final configuration.</p>
+    </div>
+    <div class="footer"><span>RFG Financial Loan Operations Platform</span><span>Conclusion</span></div>
+  </section>
+</body>
+</html>
